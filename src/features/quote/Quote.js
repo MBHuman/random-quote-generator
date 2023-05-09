@@ -4,9 +4,9 @@ import { Container } from "react-bootstrap";
 import { Button, Row, Col } from "react-bootstrap";
 
 const getRandomColor = () => {
-    const r = Math.floor(Math.random() * 220 + 20); // Generate a random value between 0 and 255 for red
-    const g = Math.floor(Math.random() * 220 + 20); // Generate a random value between 0 and 255 for green
-    const b = Math.floor(Math.random() * 220 + 20); // Generate a random value between 0 and 255 for blue
+    const r = Math.floor(Math.random() * 120 + 40); // Generate a random value between 0 and 255 for red
+    const g = Math.floor(Math.random() * 150 + 60); // Generate a random value between 0 and 255 for green
+    const b = Math.floor(Math.random() * 180 + 40); // Generate a random value between 0 and 255 for blue
 
     return `rgb(${r}, ${g}, ${b})`; // Return the color in RGB format
 }
@@ -21,34 +21,39 @@ const Quote = () => {
     const textRef = useRef(null);
     const buttonRef = useRef(null);
     const [backgroundColor, setBackgroundColor] = useState('#FF0000');
-    const [textColor, setTextColor] = useState('#FFFFFF');
 
     useEffect(() => {
         const bgEffect = async () => {
-            anime({
-                targets: [backgroundRef.current, buttonRef.current],
-                backgroundColor: backgroundColor, // Animate the background color
-                duration: 1500,
-                easing: 'easeInOutSine',
-            });
-            anime({
-                targets: [authorRef.current, textRef.current],
-                duration: 750,
-                opacity: [1, 0],
-                easing: 'easeInOutSine',
-            });
-            await setTimeout(() => {
-                const randomQuote = getRandomQuote(quotes);
-                setText(randomQuote.quote ?? '');
-                setAuthor(randomQuote.author ?? '');
+            console.log("debug color");
+            await Promise.all([
                 anime({
+                    targets: [backgroundRef.current, buttonRef.current],
+                    backgroundColor: backgroundColor, // Animate the background color
+                    duration: 1500,
+                    easing: 'easeInOutSine',
+                    complete: () => {
+                        console.log("change background")
+                    }
+                }).finished,
+                anime.timeline({
+                    easing: 'easeInOutSine'
+                }).add({
                     targets: [authorRef.current, textRef.current],
                     duration: 750,
+                    opacity: [1, 0],
+                    complete: () => {
+                        console.log("change quote");
+                        const randomQuote = getRandomQuote(quotes);
+                        setText(randomQuote.quote ?? '');
+                        setAuthor(randomQuote.author ?? '');
+                    }
+                }).add({
+                    targets: [authorRef.current, textRef.current],
                     color: backgroundColor,
+                    duration: 750,
                     opacity: [0, 1],
-                    easing: 'easeInOutSine',
-                });
-            }, 750)
+                }).finished
+            ]);
         }
         bgEffect();
 
@@ -56,30 +61,27 @@ const Quote = () => {
 
     useEffect(() => {
         const getQuotes = async () => {
-            const data = await fetch("quotes.json");
-            const dataJson = await data.json();
-            setQuotes(dataJson.quotes ?? []);
+            console.log("run fetch to quotes")
+            const data = await fetch("random-quote-generator/quotes.json")
+                .then(res => res.json())
+                .catch(err => {
+                    console.error(err);
+                });
+            setQuotes(data.quotes ?? []);
         }
-        const newBackgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-        setBackgroundColor(newBackgroundColor);
         getQuotes();
-    }, [setQuotes]);
+    }, []);
 
     const getRandomQuote = (array) => {
         return array.length !== 0 ?
-            array[Math.floor(Math.random() * array.length)] :
+            array[Math.floor(Math.random() * (array.length - 1))] :
             {};
     }
 
     const updateQuote = useCallback(() => {
-        const newBackgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+        const newBackgroundColor = getRandomColor();
         setBackgroundColor(newBackgroundColor);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    useEffect(() => {
-        updateQuote()
-    }, [updateQuote]);
 
     return (
         <div className="w-100 h-100 d-flex justify-content-center align-items-center"
