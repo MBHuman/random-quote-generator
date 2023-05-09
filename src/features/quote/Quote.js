@@ -1,7 +1,7 @@
 import anime from "animejs";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Container } from "react-bootstrap";
-import { Button, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 const getRandomColor = () => {
     const r = Math.floor(Math.random() * 120 + 40); // Generate a random value between 0 and 255 for red
@@ -24,16 +24,12 @@ const Quote = () => {
 
     useEffect(() => {
         const bgEffect = async () => {
-            console.log("debug color");
             await Promise.all([
                 anime({
                     targets: [backgroundRef.current, buttonRef.current],
                     backgroundColor: backgroundColor, // Animate the background color
                     duration: 1500,
                     easing: 'easeInOutSine',
-                    complete: () => {
-                        console.log("change background")
-                    }
                 }).finished,
                 anime.timeline({
                     easing: 'easeInOutSine'
@@ -42,7 +38,6 @@ const Quote = () => {
                     duration: 750,
                     opacity: [1, 0],
                     complete: () => {
-                        console.log("change quote");
                         const randomQuote = getRandomQuote(quotes);
                         setText(randomQuote.quote ?? '');
                         setAuthor(randomQuote.author ?? '');
@@ -61,7 +56,6 @@ const Quote = () => {
 
     useEffect(() => {
         const getQuotes = async () => {
-            console.log("run fetch to quotes")
             const data = await fetch("random-quote-generator/quotes.json")
                 .then(res => res.json())
                 .catch(err => {
