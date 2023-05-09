@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/random-quote-generator/static/css/main.a1288876.css",
-    "main.js": "/random-quote-generator/static/js/main.e76bbb3e.js",
-    "static/js/787.e43a185d.chunk.js": "/random-quote-generator/static/js/787.e43a185d.chunk.js",
-    "static/media/fontawesome-webfont.svg?v=4.7.0": "/random-quote-generator/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
-    "static/media/fontawesome-webfont.eot": "/random-quote-generator/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
-    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/random-quote-generator/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
-    "static/media/fontawesome-webfont.woff?v=4.7.0": "/random-quote-generator/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
-    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/random-quote-generator/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
-    "static/media/logo.svg": "/random-quote-generator/static/media/logo.b2e5a01e505f739f1484b881277d5186.svg",
-    "index.html": "/random-quote-generator/index.html",
-    "main.a1288876.css.map": "/random-quote-generator/static/css/main.a1288876.css.map",
-    "main.e76bbb3e.js.map": "/random-quote-generator/static/js/main.e76bbb3e.js.map",
-    "787.e43a185d.chunk.js.map": "/random-quote-generator/static/js/787.e43a185d.chunk.js.map"
+    "main.css": "/static/css/main.75400b41.css",
+    "main.js": "/static/js/main.f3fad2e6.js",
+    "static/js/787.e43a185d.chunk.js": "/static/js/787.e43a185d.chunk.js",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/logo.svg": "/static/media/logo.b2e5a01e505f739f1484b881277d5186.svg",
+    "index.html": "/index.html",
+    "main.75400b41.css.map": "/static/css/main.75400b41.css.map",
+    "main.f3fad2e6.js.map": "/static/js/main.f3fad2e6.js.map",
+    "787.e43a185d.chunk.js.map": "/static/js/787.e43a185d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a1288876.css",
-    "static/js/main.e76bbb3e.js"
+    "static/css/main.75400b41.css",
+    "static/js/main.f3fad2e6.js"
   ]
 }
